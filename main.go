@@ -12,7 +12,7 @@ import (
 // path to config file
 func get_rc_path(sh string) string {
 	if sh == "bash" {
-		return fmt.Sprintf("%s/.bahrc", os.Getenv("HOME"))
+		return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 	} else if sh == "zsh" {
 		return fmt.Sprintf("%s/.zshrc", os.Getenv("HOME"))
 	}
