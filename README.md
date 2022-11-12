@@ -9,12 +9,13 @@ Make shell alias quickly.
 </div>
 
 ## Requirements
-You need go compiler.
+You need golang compiler.
 
 # Build
 ```bash
 # clone repository
 git clone https://github.com/FejkFejkov25/goalias
+cd goalias
 # build
 go build -o goal main.go
 ```
@@ -23,6 +24,8 @@ go build -o goal main.go
 ```bash
 goal -s <your_shell> -n <name_of_alias> -c <command>
 ```
-
+```bash
+goal -s bash -n publicip -c "curl ifconfig.me"
+```
 ## License
 [MIT](./LICENSE)
