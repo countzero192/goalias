@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"log"
-	"flag"
 	"bufio"
+	"flag"
+	"fmt"
+	"log"
+	"os"
 	"strings"
-) 
+)
 
 // path to config file
 func get_rc_path(sh string) string {
@@ -19,11 +19,9 @@ func get_rc_path(sh string) string {
 	return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 }
 
-
 func make_alias_command(name, com string) string {
 	return fmt.Sprintf("alias %s=\"%s\"\n", name, com)
 }
-
 
 func main() {
 	// parse shell args
@@ -45,18 +43,20 @@ func main() {
 		text, _ := reader.ReadString('\n')
 		*command = strings.Replace(text, "\n", "", -1)
 	}
-	
+
 	path_to_file := get_rc_path(*shell)
+
 	file, err := os.OpenFile(path_to_file, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer file.Close()
+
 	com := make_alias_command(*name_of_alias, *command)
 	if _, err := file.WriteString(com); err != nil {
 		log.Fatal(err)
 	}
-	if err := file.Close(); err != nil {
-		log.Fatal(err)
-	}
+
 	fmt.Println("Successful")
 }
