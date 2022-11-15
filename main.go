@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
@@ -15,8 +14,9 @@ func get_rc_path(sh string) string {
 		return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 	} else if sh == "zsh" {
 		return fmt.Sprintf("%s/.zshrc", os.Getenv("HOME"))
+	} else {
+		return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 	}
-	return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 }
 
 func make_alias_command(name, com string) string {
@@ -48,14 +48,14 @@ func main() {
 
 	file, err := os.OpenFile(path_to_file, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	defer file.Close()
 
 	com := make_alias_command(*name_of_alias, *command)
 	if _, err := file.WriteString(com); err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	fmt.Println("Successful")
