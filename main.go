@@ -14,13 +14,21 @@ func get_rc_path(sh string) string {
 		return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 	} else if sh == "zsh" {
 		return fmt.Sprintf("%s/.zshrc", os.Getenv("HOME"))
+	} else if sh == "tcsh" {
+		return fmt.Sprintf("%s/.tcshrc", os.Getenv("HOME"))
 	} else {
 		return fmt.Sprintf("%s/.bashrc", os.Getenv("HOME"))
 	}
 }
 
-func make_alias_command(name, com string) string {
-	return fmt.Sprintf("alias %s=\"%s\"\n", name, com)
+func make_alias_command(name, com, sh string) string {
+	if sh == "zsh" || sh == "bash" {
+		return fmt.Sprintf("alias %s=\"%s\"\n", name, com)
+	} else if sh == "tcsh" {
+		return fmt.Sprintf("alias %s \"%s\"\n", name, com)
+	} else {
+		return fmt.Sprintf("alias %s=\"%s\"\n", name, com)
+	}
 }
 
 func main() {
@@ -53,7 +61,8 @@ func main() {
 
 	defer file.Close()
 
-	com := make_alias_command(*name_of_alias, *command)
+	com := make_alias_command(*name_of_alias, *command, *shell)
+
 	if _, err := file.WriteString(com); err != nil {
 		panic(err)
 	}
