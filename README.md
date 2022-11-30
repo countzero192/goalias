@@ -9,8 +9,7 @@ Make shell alias quickly.
 </div>
 
 ## Requirements
-You need golang compiler.
-
+golang compilator;
 # Build
 ```bash
 # clone repository
