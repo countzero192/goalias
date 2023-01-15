@@ -1,13 +1,13 @@
 NAME=goal
 INST=/usr/local/bin
 
-build:
+build: main.go
 	go build -o $(NAME) main.go 
 
 clean:
 	rm -f $(NAME)
 
-install:
+install: goal
 	cp $(NAME) $(INST) 
 
 uninstall:
