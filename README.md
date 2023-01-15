@@ -9,7 +9,7 @@ Make shell alias quickly.
 </div>
 
 ## Requirements
-golang compilator;
+go
 # Build
 ```bash
 # clone repository
@@ -17,8 +17,14 @@ git clone https://github.com/FejkFejkov25/goalias
 cd goalias
 # build
 make
+```
+
+# Install
+```bash
 # install
-make install
+doas make install
+# uninstall
+doas make uninstall
 ```
 
 # Usage
