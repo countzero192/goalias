@@ -16,7 +16,9 @@ golang compilator;
 git clone https://github.com/FejkFejkov25/goalias
 cd goalias
 # build
-go build -o goal main.go
+make
+# install
+make install
 ```
 
 # Usage
