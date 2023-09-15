@@ -1,14 +1,14 @@
-NAME=goal
+NAME=goalias
 INST=/usr/local/bin
 
-build: main.go
-	go build -o $(NAME) main.go 
+$(NAME): main.go
+	go build
 
-clean:
-	rm -f $(NAME)
-
-install: goal
+install: $(NAME)
 	cp $(NAME) $(INST) 
 
 uninstall:
 	rm -f $(INST)/$(NAME)
+
+clean:
+	rm -f $(NAME)
